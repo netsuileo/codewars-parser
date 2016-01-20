@@ -41,10 +41,10 @@ def main():
         id = kata_info.attr('data-id')
         with urllib.request.urlopen('https://www.codewars.com/api/v1/code-challenges/{0}'.format(id)) as r:
             kata_json = json.loads(r.read().decode(r.info().get_param('charset') or 'utf-8'))
-            print('kata {0} has been fetched'.format(id))
+            logging.info('kata {0} has been fetched'.format(id))
             katas.append(kata_json)
 
-    print(katas)
+    print(json.dumps({'katas': katas}, indent=4))
 
 
 if __name__ == '__main__':
